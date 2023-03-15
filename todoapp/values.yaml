@@ -8,7 +8,7 @@ image:
   repository: 644435390668.dkr.ecr.eu-west-2.amazonaws.com/olgag-ecr-prv
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: todo-1.25    
+  tag: todo-1.26 
 
 imagePullSecrets: []
 nameOverride: ""
