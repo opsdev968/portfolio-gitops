@@ -3,20 +3,21 @@ kind: ServiceMonitor
 metadata:
   labels:
     app: kube-prometheus-stack-prometheus
-    release: prometheus-stack                       
+    release: prometheus-stack                   ## release / chart name of promethius                 
     self-monitor: "true"
-    serviceMonitorSelector: prometheus-stack
+    serviceMonitorSelector: prometheus-stack    ## ? release / chart name of promethius 
     operated-prometheus: "true"
-  name: portfolio-app-service-monitor
-  namespace: default
+  name: todoapp-smon
+  namespace: default   ## Smon Namespace
 spec:
   endpoints:
   - interval: 5s
-    port: http
+    port: http   ## {{ .Values.service.name }} 
     path: /metrics
   namespaceSelector:
     matchNames:
-    - default
+    - default            ## App Namespace
   selector:
     matchLabels:
-      app.kubernetes.io/name: todoapp
+      ## {{- include "todoapp.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/name: todoapp           ##  one from todoapp.selectorLabels
